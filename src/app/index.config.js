@@ -23,7 +23,7 @@
         '<formly-transclude></formly-transclude>',
         '<div class="validation"',
         '  ng-if="showError"',
-        '  ng-messages="fc.$error">{{options.validation}}',
+        '  ng-messages="fc.$error">',
         '  <div ng-message="{{::name}}" ngrepeat="(name, message) in ::options.validation.messages">',
         '    {{message(fc.$viewValue, fc.$modelValue, this)}}',
         '  </div>',
