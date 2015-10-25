@@ -4,7 +4,8 @@
   "dependencies": {
     "angular": "^1.4.7",
     "angular-formly": "^7.2.1",
-    "api-check": "^7.5.3"
+    "api-check": "^7.5.3",
+    "gulp-bump": "^1.0.0"
   },
   "scripts": {
     "test": "gulp test"

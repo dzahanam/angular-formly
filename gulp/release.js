@@ -38,6 +38,12 @@ gulp.task('commit-changes', function () {
     .on('error', gutil.log);
 });
 
+gulp.task('commit-changes-dist', function () {
+  return gulp.src('/dist')
+    .pipe(git.add())
+    .pipe(git.commit('[Release dist] Bumped version number'));
+});
+
 gulp.task('push-changes', function (cb) {
   git.push('origin', 'master', cb);
 });
@@ -68,6 +74,24 @@ gulp.task('release', function (callback) {
     // 'changelog',
     'commit-changes',
     'push-changes',
+    'create-new-tag',
+    // 'bitbucket-release',
+    function (error) {
+      if (error) {
+        console.log(error.message);
+      } else {
+        console.log('RELEASE FINISHED SUCCESSFULLY');
+      }
+      callback(error);
+    });
+});
+
+gulp.task('release-azure', function (callback) {
+  runSequence(
+    'bump-version',
+    // 'changelog',
+    'commit-changes-dist',
+    'push-azure-changes',
     'create-new-tag',
     // 'bitbucket-release',
     function (error) {
