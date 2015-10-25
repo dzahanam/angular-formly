@@ -1,6 +1,6 @@
 {
   "name": "formlyTest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {
     "angular": "^1.4.7",
     "angular-formly": "^7.2.1",
