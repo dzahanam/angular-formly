@@ -14,17 +14,9 @@ gulp.task('changelog', function () {
     .pipe(conventionalChangelog({
       preset: 'angular' // Or to any other commit message convention you use.
     }))
-    .pipe(gulp.dest(path.join(conf.paths.dist, 'dist')));
+    .pipe(gulp.dest(path.join(conf.paths.dist, 'dist')))
+    .on('error', gutil.log);
 });
-
-// gulp.task('bitbucket-release', function(done) {
-  // conventionalBitbucketReleaser({
-    // type: "oauth",
-    // token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8' // change this to your own GitHub token or use an environment variable
-//   }, {
-//     preset: 'angular' // Or to any other commit message convention you use.
-//   }, done);
-// });
 
 gulp.task('azure-deployment', function(done) {
   console.log('TODO azure-deployment');
@@ -42,7 +34,8 @@ gulp.task('bump-version', function () {
 gulp.task('commit-changes', function () {
   return gulp.src('.')
     .pipe(git.add())
-    .pipe(git.commit('[Prerelease] Bumped version number'));
+    .pipe(git.commit('[Prerelease] Bumped version number'))
+    .on('error', gutil.log);
 });
 
 gulp.task('push-changes', function (cb) {
