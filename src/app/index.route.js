@@ -20,6 +20,12 @@
         controller: 'FormController',
         controllerAs: 'vm'
       })
+      .state('form-uiselect', {
+        url: '/form-uiselect',
+        templateUrl: 'app/formly/form-select.html',
+        controller: 'FormSelectController',
+        controllerAs: 'vm'
+      })
       ;
 
     $urlRouterProvider.otherwise('/');

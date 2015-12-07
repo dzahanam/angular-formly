@@ -1,0 +1,51 @@
+<div class="container">
+
+  <div>
+    Testy UI-Select with Formly
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+          <h3>UI-Select Form in Action :)</h3>
+
+          <hr />
+          <form ng-submit="vm.onSubmit()" name="vm.form" novalidate>
+            <formly-form model="vm.model" fields="vm.fields" options="vm.options" form="vm.form">
+              <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
+            </formly-form>
+          </form>
+          <h2>Form Data</h2>
+          <pre>{{vm.model | json}}</pre>
+
+    </div>
+  </div>
+
+      <!-- Put custom templates here -->
+      <script type="text/ng-template" id="ui-select-single.html">
+        <ui-select data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
+          <ui-select-match placeholder="{{to.placeholder}}" data-allow-clear="true">{{$select.selected[to.labelProp]}}</ui-select-match>
+          <ui-select-choices data-repeat="{{to.ngOptions}}">
+            <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </script>
+      <script type="text/ng-template" id="ui-select-single-async-search.html">
+        <ui-select data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
+          <ui-select-match placeholder="{{to.placeholder}}">{{$select.selected[to.labelProp]}}</ui-select-match>
+          <ui-select-choices data-repeat="{{to.ngOptions}}" data-refresh="to.refresh($select.search, options)" data-refresh-delay="{{to.refreshDelay}}">
+            <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>
+            <div><small>{{option.geometry.location.lat}}, {{option.geometry.location.lng}}</small></div>
+          </ui-select-choices>
+        </ui-select>
+      </script>
+      <script type="text/ng-template" id="ui-select-multiple.html">
+        <ui-select multiple data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
+          <ui-select-match placeholder="{{to.placeholder}}">{{$item[to.labelProp]}}</ui-select-match>
+          <ui-select-choices data-repeat="{{to.ngOptions}}">
+            <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </script>
+      <!-- END Put custom templates here -->
+
+</div>

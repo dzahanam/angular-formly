@@ -39,7 +39,7 @@ gulp.task('commit-changes', function () {
 });
 
 gulp.task('commit-changes-dist', function () {
-  return gulp.src('/dist')
+  return gulp.src('dist/*')
     .pipe(git.add())
     .pipe(git.commit('[Release dist] Bumped version number'));
 });
@@ -58,7 +58,7 @@ gulp.task('create-new-tag', function (cb) {
     if (error) {
       return cb(error);
     }
-    git.push('origin', 'master', {args: '--tags'}, cb);
+    git.push('azure', 'master', {args: '--tags'}, cb);
   });
 
   function getPackageJsonVersion () {
